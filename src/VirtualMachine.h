@@ -10,7 +10,8 @@ class VirtualMachine : public IVirtualMachine {
 public:
     void run(IByteCode &bc) override;
 
-    uint8_t readMemoryRelative8(std::size_t address) override;
+    uint8_t readMemoryRelative8(int offset) override;
+    uint8_t readStackAbsolute8(std::size_t address) override;
 
 protected:
     void exePlus8() override;

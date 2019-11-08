@@ -16,13 +16,6 @@ void VirtualMachine::run(IByteCode &bc) {
 
         _cpuState.instruction_ptr += instruction->execute(*this, bc);
     }
-
-    cout << "Stack: ";
-    while (!_cpuState.stack.empty())
-    {
-        cout << hex << _cpuState.stack.top() << ", " << endl;
-        _cpuState.stack.pop();
-    }
 }
 
 void VirtualMachine::exePlus8() {
@@ -44,10 +37,14 @@ void VirtualMachine::stop() {
     _running = false;
 }
 
-uint8_t VirtualMachine::readMemoryRelative8(std::size_t address) {
-    _byte_code->read8(_cpuState.instruction_ptr + address);
+uint8_t VirtualMachine::readMemoryRelative8(int offset) {
+    _byte_code->read8(_cpuState.instruction_ptr + offset);
 }
 
 void VirtualMachine::push8(uint8_t data) {
     _cpuState.stack.push(data);
+}
+
+uint8_t VirtualMachine::readStackAbsolute8(std::size_t address) {
+    return _cpuState.stack.top();
 }
