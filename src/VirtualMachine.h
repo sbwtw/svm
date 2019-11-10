@@ -11,12 +11,12 @@ public:
     void run(IByteCode &bc) override;
 
     uint8_t readMemoryRelative8(int offset) override;
-    uint8_t readStackAbsolute8(std::size_t address) override;
+    uint8_t readStack8(std::size_t address) override;
 
 protected:
-    void exePlus8() override;
     void stop() override;
     void push8(uint8_t data) override;
+    uint8_t pop8() override;
 
 private:
     IByteCode *_byte_code;

@@ -18,7 +18,7 @@ int main()
     vm.run(bc);
 
     // 1 + 2 = 3
-    assert(3 == vm.readStackAbsolute8(0));
+    assert(3 == vm.readStack8(0));
 
     return 0;
 }

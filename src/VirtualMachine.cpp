@@ -18,14 +18,14 @@ void VirtualMachine::run(IByteCode &bc) {
     }
 }
 
-void VirtualMachine::exePlus8() {
-    uint8_t a = _cpuState.stack.top();
-    _cpuState.stack.pop();
-    uint8_t b = _cpuState.stack.top();
-    _cpuState.stack.pop();
-
-    _cpuState.stack.push(a + b);
-}
+//void VirtualMachine::exePlus8() {
+//    uint8_t a = _cpuState.stack.top();
+//    _cpuState.stack.pop();
+//    uint8_t b = _cpuState.stack.top();
+//    _cpuState.stack.pop();
+//
+//    _cpuState.stack.push(a + b);
+//}
 
 //void VirtualMachine::decode(Operand op, IByteCode &bc) {
 //    switch (Operand)
@@ -38,13 +38,20 @@ void VirtualMachine::stop() {
 }
 
 uint8_t VirtualMachine::readMemoryRelative8(int offset) {
-    _byte_code->read8(_cpuState.instruction_ptr + offset);
+    return _byte_code->read8(_cpuState.instruction_ptr + offset);
 }
 
 void VirtualMachine::push8(uint8_t data) {
     _cpuState.stack.push(data);
 }
 
-uint8_t VirtualMachine::readStackAbsolute8(std::size_t address) {
+uint8_t VirtualMachine::readStack8(std::size_t address) {
     return _cpuState.stack.top();
+}
+
+uint8_t VirtualMachine::pop8() {
+    auto data = _cpuState.stack.top();
+    _cpuState.stack.pop();
+
+    return data;
 }

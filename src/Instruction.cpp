@@ -7,7 +7,9 @@ using namespace std;
 size_t Add8Instruction::execute(IVirtualMachine &vm, IByteCode &) {
     cout << "execute Add8" << endl;
 
-    vm.exePlus8();
+    auto a = vm.pop8();
+    auto b = vm.pop8();
+    vm.push8(a + b);
 
     return 1;
 }

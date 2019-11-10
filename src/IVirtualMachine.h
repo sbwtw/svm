@@ -17,11 +17,11 @@ public:
 
 public:
     virtual void run(IByteCode &bc) = 0;
-    virtual void exePlus8() = 0;
     virtual void stop() = 0;
     virtual void push8(uint8_t data) = 0;
+    virtual uint8_t pop8() = 0;
     virtual uint8_t readMemoryRelative8(int offset) = 0;
-    virtual uint8_t readStackAbsolute8(std::size_t address) = 0;
+    virtual uint8_t readStack8(std::size_t address) = 0;
 };
 
 
