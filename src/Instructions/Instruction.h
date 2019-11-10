@@ -3,11 +3,11 @@
 
 #include <cstddef>
 
-#include "IVirtualMachine.h"
+#include "src/IVirtualMachine.h"
 
 class Instruction {
 public:
-    virtual size_t execute(IVirtualMachine &, IByteCode &);
+    virtual size_t execute(IVirtualMachine &);
 
     [[nodiscard]]
     std::size_t instructionAddress() const { return _instruction_address; }
@@ -24,7 +24,7 @@ class Add8Instruction : public Instruction
 public:
     explicit Add8Instruction(std::size_t address);
 
-    size_t execute(IVirtualMachine &vm, IByteCode &bc) override;
+    size_t execute(IVirtualMachine &vm) override;
 };
 
 class Push8Instruction : public Instruction
@@ -32,7 +32,7 @@ class Push8Instruction : public Instruction
 public:
     explicit Push8Instruction(std::size_t address);
 
-    size_t execute(IVirtualMachine &vm, IByteCode &bc) override;
+    size_t execute(IVirtualMachine &vm) override;
 };
 
 class NopInstruction : public Instruction
@@ -46,7 +46,7 @@ class StopInstruction : public Instruction
 public:
     explicit StopInstruction(std::size_t address);
 
-    size_t execute(IVirtualMachine &vm, IByteCode &bc) override;
+    size_t execute(IVirtualMachine &vm) override;
 };
 
 #endif //SVM_INSTRUCTION_H

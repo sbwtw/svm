@@ -4,7 +4,7 @@
 
 using namespace std;
 
-size_t Add8Instruction::execute(IVirtualMachine &vm, IByteCode &) {
+size_t Add8Instruction::execute(IVirtualMachine &vm) {
     cout << "execute Add8" << endl;
 
     auto a = vm.pop8();
@@ -19,7 +19,7 @@ Add8Instruction::Add8Instruction(std::size_t address)
 
 }
 
-size_t Instruction::execute(IVirtualMachine &, IByteCode &) {
+size_t Instruction::execute(IVirtualMachine &) {
     return 1;
 }
 
@@ -38,7 +38,7 @@ Push8Instruction::Push8Instruction(std::size_t address)
 
 }
 
-size_t Push8Instruction::execute(IVirtualMachine &vm, IByteCode &bc) {
+size_t Push8Instruction::execute(IVirtualMachine &vm) {
     cout << "execute Push8" << endl;
 
     auto data = vm.readMemoryRelative8(1);
@@ -52,7 +52,7 @@ StopInstruction::StopInstruction(std::size_t address)
     : Instruction(address) {
 }
 
-size_t StopInstruction::execute(IVirtualMachine &vm, IByteCode &) {
+size_t StopInstruction::execute(IVirtualMachine &vm) {
     cout << "execute Stop" << endl;
     vm.stop();
 

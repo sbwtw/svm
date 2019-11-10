@@ -1,12 +1,12 @@
 #ifndef SVM_IVIRTUALMACHINE_H
 #define SVM_IVIRTUALMACHINE_H
 
-#include <stack>
+#include <list>
 #include <cstdint>
 
 struct CpuState {
     std::size_t instruction_ptr = 0;
-    std::stack<uint8_t> stack;
+    std::list<uint8_t> stack;
 };
 
 class IByteCode;

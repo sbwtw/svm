@@ -4,7 +4,7 @@
 #include <optional>
 #include <memory>
 
-#include "Instruction.h"
+#include "src/Instructions/Instruction.h"
 
 class IByteCode {
 public:

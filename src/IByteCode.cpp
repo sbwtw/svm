@@ -1,5 +1,5 @@
 #include "IByteCode.h"
-#include "Instruction.h"
+#include "src/Instructions/Instruction.h"
 
 using namespace std;
 

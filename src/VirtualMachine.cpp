@@ -2,6 +2,7 @@
 #include "IByteCode.h"
 
 #include <iostream>
+#include <cassert>
 
 using namespace std;
 
@@ -14,24 +15,9 @@ void VirtualMachine::run(IByteCode &bc) {
 
         cout << "Execute " << hex << instruction->instructionAddress() << endl;
 
-        _cpuState.instruction_ptr += instruction->execute(*this, bc);
+        _cpuState.instruction_ptr += instruction->execute(*this);
     }
 }
-
-//void VirtualMachine::exePlus8() {
-//    uint8_t a = _cpuState.stack.top();
-//    _cpuState.stack.pop();
-//    uint8_t b = _cpuState.stack.top();
-//    _cpuState.stack.pop();
-//
-//    _cpuState.stack.push(a + b);
-//}
-
-//void VirtualMachine::decode(Operand op, IByteCode &bc) {
-//    switch (Operand)
-//    {
-//    }
-//}
 
 void VirtualMachine::stop() {
     _running = false;
@@ -42,16 +28,20 @@ uint8_t VirtualMachine::readMemoryRelative8(int offset) {
 }
 
 void VirtualMachine::push8(uint8_t data) {
-    _cpuState.stack.push(data);
+    _cpuState.stack.push_front(data);
 }
 
 uint8_t VirtualMachine::readStack8(std::size_t address) {
-    return _cpuState.stack.top();
+    assert(address < _cpuState.stack.size());
+
+    auto it = next(_cpuState.stack.cbegin(), address);
+
+    return *it;
 }
 
 uint8_t VirtualMachine::pop8() {
-    auto data = _cpuState.stack.top();
-    _cpuState.stack.pop();
+    auto data = _cpuState.stack.front();
+    _cpuState.stack.pop_front();
 
     return data;
 }

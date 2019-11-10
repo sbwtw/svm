@@ -10,6 +10,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #set(CMAKE_VERBOSE_MAKEFILE ON)
 
-file(GLOB SourceFiles "src/*.h" "src/*.cpp")
+file(GLOB_RECURSE SourceFiles "src/*.h" "src/*.cpp")
 
 add_executable(svm ${SourceFiles})
