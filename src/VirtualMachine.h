@@ -17,6 +17,7 @@ protected:
     void stop() override;
     void push8(uint8_t data) override;
     uint8_t pop8() override;
+    CpuState& cpuState() override;
 
 private:
     IByteCode *_byte_code;

@@ -45,3 +45,7 @@ uint8_t VirtualMachine::pop8() {
 
     return data;
 }
+
+CpuState &VirtualMachine::cpuState() {
+    return _cpuState;
+}
