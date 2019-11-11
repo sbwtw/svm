@@ -7,7 +7,8 @@
 
 class Instruction {
 public:
-    virtual size_t execute(IVirtualMachine &);
+    virtual size_t execute(IVirtualMachine &) = 0;
+    virtual ~Instruction() = default;
 
 protected:
     explicit Instruction() = default;
@@ -25,6 +26,22 @@ class Push8Instruction : public Instruction
 {
 public:
     explicit Push8Instruction() = default;
+
+    size_t execute(IVirtualMachine &vm) override;
+};
+
+class JmpInstruction : public Instruction
+{
+public:
+    explicit JmpInstruction() = default;
+
+    size_t execute(IVirtualMachine &vm) override;
+};
+
+class JzInstruction : public Instruction
+{
+public:
+    explicit JzInstruction() = default;
 
     size_t execute(IVirtualMachine &vm) override;
 };

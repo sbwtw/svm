@@ -16,10 +16,6 @@ size_t Add8Instruction::execute(IVirtualMachine &vm) {
     return 1;
 }
 
-size_t Instruction::execute(IVirtualMachine &) {
-    return 1;
-}
-
 size_t Push8Instruction::execute(IVirtualMachine &vm) {
     cout << "execute Push8" << endl;
 
@@ -35,4 +31,22 @@ size_t StopInstruction::execute(IVirtualMachine &vm) {
     vm.stop();
 
     return 0;
+}
+
+size_t JmpInstruction::execute(IVirtualMachine &vm) {
+    auto offset = vm.pop8();
+
+    vm.cpuState().instruction_ptr += offset;
+
+    return 1;
+}
+
+size_t JzInstruction::execute(IVirtualMachine &vm) {
+    auto& cpu = vm.cpuState();
+    auto offset = vm.pop8();
+
+    if (cpu.zero_flag)
+        cpu.instruction_ptr += offset;
+
+    return 1;
 }
