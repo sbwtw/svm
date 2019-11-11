@@ -48,13 +48,13 @@ unique_ptr<Instruction> IByteCode::instruction(size_t address) {
     switch (op)
     {
     case 0x00: // stop
-        return make_unique<StopInstruction>(address);
+        return make_unique<StopInstruction>();
     case 0x01: // push
-        return make_unique<Push8Instruction>(address);
+        return make_unique<Push8Instruction>();
     case 0x02: // add
-        return make_unique<Add8Instruction>(address);
+        return make_unique<Add8Instruction>();
     default:;
     }
 
-    return make_unique<StopInstruction>(address);
+    return make_unique<StopInstruction>();
 }

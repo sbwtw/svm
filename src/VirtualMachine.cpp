@@ -13,8 +13,6 @@ void VirtualMachine::run(IByteCode &bc) {
     {
         auto instruction = bc.instruction(_cpuState.instruction_ptr);
 
-        cout << "Execute " << hex << instruction->instructionAddress() << endl;
-
         _cpuState.instruction_ptr += instruction->execute(*this);
     }
 }

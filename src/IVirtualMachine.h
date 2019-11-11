@@ -5,10 +5,10 @@
 #include <cstdint>
 
 struct CpuState {
+    bool zero_flag: 1;
+
     std::size_t instruction_ptr = 0;
     std::list<uint8_t> stack;
-
-    bool zero_flag: 1;
 };
 
 class IByteCode;

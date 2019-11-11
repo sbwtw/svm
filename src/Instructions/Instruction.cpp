@@ -16,28 +16,8 @@ size_t Add8Instruction::execute(IVirtualMachine &vm) {
     return 1;
 }
 
-Add8Instruction::Add8Instruction(std::size_t address)
-    : Instruction(address) {
-
-}
-
 size_t Instruction::execute(IVirtualMachine &) {
     return 1;
-}
-
-Instruction::Instruction(std::size_t address)
-    : _instruction_address(address) {
-
-}
-
-NopInstruction::NopInstruction(std::size_t address)
-    : Instruction(address) {
-
-}
-
-Push8Instruction::Push8Instruction(std::size_t address)
-    : Instruction(address) {
-
 }
 
 size_t Push8Instruction::execute(IVirtualMachine &vm) {
@@ -48,10 +28,6 @@ size_t Push8Instruction::execute(IVirtualMachine &vm) {
     vm.push8(data);
 
     return 2;
-}
-
-StopInstruction::StopInstruction(std::size_t address)
-    : Instruction(address) {
 }
 
 size_t StopInstruction::execute(IVirtualMachine &vm) {

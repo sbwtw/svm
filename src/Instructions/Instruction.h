@@ -9,20 +9,14 @@ class Instruction {
 public:
     virtual size_t execute(IVirtualMachine &);
 
-    [[nodiscard]]
-    std::size_t instructionAddress() const { return _instruction_address; }
-
 protected:
-    explicit Instruction(std::size_t address);
-
-private:
-    std::size_t _instruction_address = 0;
+    explicit Instruction() = default;
 };
 
 class Add8Instruction : public Instruction
 {
 public:
-    explicit Add8Instruction(std::size_t address);
+    explicit Add8Instruction() = default;
 
     size_t execute(IVirtualMachine &vm) override;
 };
@@ -30,7 +24,7 @@ public:
 class Push8Instruction : public Instruction
 {
 public:
-    explicit Push8Instruction(std::size_t address);
+    explicit Push8Instruction() = default;
 
     size_t execute(IVirtualMachine &vm) override;
 };
@@ -38,13 +32,13 @@ public:
 class NopInstruction : public Instruction
 {
 public:
-    explicit NopInstruction(std::size_t address);
+    explicit NopInstruction() = default;
 };
 
 class StopInstruction : public Instruction
 {
 public:
-    explicit StopInstruction(std::size_t address);
+    explicit StopInstruction() = default;
 
     size_t execute(IVirtualMachine &vm) override;
 };
