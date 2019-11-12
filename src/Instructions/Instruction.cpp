@@ -20,7 +20,7 @@ size_t Push8Instruction::execute(IVirtualMachine &vm) {
     cout << "execute Push8" << endl;
 
     auto data = vm.readMemoryRelative8(1);
-    cout << "push " << data << endl;
+    cout << "push " << (short)data << endl;
     vm.push8(data);
 
     return 2;

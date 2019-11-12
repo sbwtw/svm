@@ -2,6 +2,7 @@
 #include "IByteCode.h"
 
 #include <iostream>
+#include <iomanip>
 #include <cassert>
 
 using namespace std;
@@ -14,6 +15,14 @@ void VirtualMachine::run(IByteCode &bc) {
         auto instruction = bc.instruction(_cpuState.instruction_ptr);
 
         _cpuState.instruction_ptr += instruction->execute(*this);
+
+        // dump stack
+        cout << "Stack: ";
+        for (auto v : _cpuState.stack)
+        {
+            cout << setw(2) << setfill('0') << hex << (short)v << ' ';
+        }
+        cout << endl;
     }
 }
 
@@ -26,7 +35,7 @@ uint8_t VirtualMachine::readMemoryRelative8(int offset) {
 }
 
 void VirtualMachine::push8(uint8_t data) {
-    _cpuState.stack.push_front(data);
+    _cpuState.stack.push_back(data);
 }
 
 uint8_t VirtualMachine::readStack8(std::size_t address) {
@@ -38,8 +47,8 @@ uint8_t VirtualMachine::readStack8(std::size_t address) {
 }
 
 uint8_t VirtualMachine::pop8() {
-    auto data = _cpuState.stack.front();
-    _cpuState.stack.pop_front();
+    auto data = _cpuState.stack.back();
+    _cpuState.stack.pop_back();
 
     return data;
 }
