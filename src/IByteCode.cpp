@@ -53,6 +53,8 @@ unique_ptr<Instruction> IByteCode::instruction(size_t address) {
         return make_unique<Push8Instruction>();
     case 0x02: // add
         return make_unique<Add8Instruction>();
+    case 0x04: // jz
+        return make_unique<JzInstruction>();
     default:;
     }
 
