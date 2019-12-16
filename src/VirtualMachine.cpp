@@ -14,8 +14,6 @@ void VirtualMachine::run(IByteCode &bc) {
     {
         auto instruction = bc.instruction(_cpuState.instruction_ptr);
 
-        _cpuState.instruction_ptr += instruction->execute(*this);
-
         // dump stack
         cout << "Stack: ";
         for (auto v : _cpuState.stack)

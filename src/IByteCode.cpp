@@ -1,5 +1,4 @@
 #include "IByteCode.h"
-#include "src/Instructions/Instruction.h"
 
 using namespace std;
 
@@ -58,5 +57,5 @@ unique_ptr<Instruction> IByteCode::instruction(size_t address) {
     default:;
     }
 
-    return make_unique<StopInstruction>();
+    return nullptr;
 }
