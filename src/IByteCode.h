@@ -16,8 +16,8 @@ public:
 
     std::unique_ptr<Instruction> instruction(size_t address);
 
-    virtual uint8_t read8(size_t address) = 0;
-    virtual uint32_t read32(size_t address) = 0;
+    virtual std::optional<uint8_t> read8(size_t address) = 0;
+    virtual std::optional<uint32_t> read32(size_t address) = 0;
 
     // iterator
 //    iterator begin();

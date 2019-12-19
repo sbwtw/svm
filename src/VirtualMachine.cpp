@@ -29,7 +29,7 @@ void VirtualMachine::stop() {
 }
 
 uint8_t VirtualMachine::readMemoryRelative8(int offset) {
-    return _byte_code->read8(_cpuState.instruction_ptr + offset);
+    return _byte_code->read8(_cpuState.instruction_ptr + offset).value();
 }
 
 void VirtualMachine::push8(uint8_t data) {

@@ -12,6 +12,7 @@ int main()
 {
     // means 1 + 2
     const char *code = "\x01\x01\x04\x06\x01\x03\x04\x06\x08";
+//    const char *code = "\x01\x01\x04\x06\x01";
     ByteCode bc(code);
 
     IDisassembler *disassembler = new Disassembler(code);

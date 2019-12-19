@@ -3,6 +3,7 @@
 #include "src/Disassembler.h"
 
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -17,8 +18,8 @@ void Add8Instruction::execute(IVirtualMachine &vm) {
     vm.cpuState().instruction_ptr += 1;
 }
 
-void Add8Instruction::disassembly(IDisassembler &disassembler) {
-
+void Add8Instruction::disassembly(IDisassembler &disassembler, ostream &out)
+{
 }
 
 void Push8Instruction::execute(IVirtualMachine &vm) {
@@ -30,8 +31,13 @@ void Push8Instruction::execute(IVirtualMachine &vm) {
     vm.cpuState().instruction_ptr += 2;
 }
 
-void Push8Instruction::disassembly(IDisassembler &disassembler) {
+void Push8Instruction::disassembly(IDisassembler &disassembler, ostream &out)
+{
+    int data = disassembler.read(1);
 
+    out << "Push8\t" << setw(2) << setfill('0') << hex << data;
+
+    disassembler.offset += 2;
 }
 
 void StopInstruction::execute(IVirtualMachine &vm) {
@@ -39,7 +45,7 @@ void StopInstruction::execute(IVirtualMachine &vm) {
     vm.stop();
 }
 
-void StopInstruction::disassembly(IDisassembler &disassembler) {
+void StopInstruction::disassembly(IDisassembler &disassembler, ostream &out) {
 
 }
 
@@ -49,7 +55,7 @@ void JmpInstruction::execute(IVirtualMachine &vm) {
     vm.cpuState().instruction_ptr += offset + 1;
 }
 
-void JmpInstruction::disassembly(IDisassembler &disassembler) {
+void JmpInstruction::disassembly(IDisassembler &disassembler, ostream &out) {
 
 }
 
@@ -63,6 +69,27 @@ void JzInstruction::execute(IVirtualMachine &vm) {
     cpu.instruction_ptr += 1;
 }
 
-void JzInstruction::disassembly(IDisassembler &disassembler) {
+void JzInstruction::disassembly(IDisassembler &disassembler, ostream &out) {
 
+}
+
+void B2WInstruction::disassembly(IDisassembler &disassembler, std::ostream &out)
+{
+    out << "B2W";
+    disassembler.offset += 1;
+}
+
+void B2WInstruction::execute(IVirtualMachine &vm)
+{
+
+}
+
+void W2DInstruction::execute(IVirtualMachine &vm) {
+
+}
+
+void W2DInstruction::disassembly(IDisassembler &disassembler, std::ostream &out)
+{
+    out << "W2D";
+    disassembler.offset += 1;
 }

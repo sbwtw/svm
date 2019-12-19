@@ -44,7 +44,10 @@ using namespace std;
 // instruction decode
 unique_ptr<Instruction> IByteCode::instruction(size_t address) {
     auto op = read8(address);
-    switch (op)
+    if (!op.has_value())
+        return nullptr;
+
+    switch (op.value())
     {
     case 0x00: // stop
         return make_unique<StopInstruction>();
@@ -52,8 +55,10 @@ unique_ptr<Instruction> IByteCode::instruction(size_t address) {
         return make_unique<Push8Instruction>();
     case 0x02: // add
         return make_unique<Add8Instruction>();
-    case 0x04: // jz
-        return make_unique<JzInstruction>();
+    case 0x04: // b2w
+        return make_unique<B2WInstruction>();
+    case 0x06: // w2d
+        return make_unique<W2DInstruction>();
     default:;
     }
 
